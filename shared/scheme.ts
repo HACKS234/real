@@ -1,7 +1,7 @@
 import { pgTable, text, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
-import * as schema from "@/shared/scheme";
+
 export const games = pgTable("games", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
