@@ -11,7 +11,7 @@ import Game from "@/pages/game";
 import AuthPage from "@/pages/auth-page";
 import Rankings from "@/pages/rankings";
 import ProxyPage from "@/pages/proxy";
-
+import { Toaster } from "../components/ui/toaster";
 function Router() {
   return (
     <div className="min-h-screen bg-background">
