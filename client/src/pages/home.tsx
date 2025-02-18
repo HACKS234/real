@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { SearchBar } from "@/components/search-bar";
 import { GameGrid } from "@/components/game-grid";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { gameCategories } from "@shared/schema";
+import { gameCategories } from "@/shared/scheme"; // Corrected import path
 import { mockGames } from "@/lib/mock-data";
 
 export default function Home() {
