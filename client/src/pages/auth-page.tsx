@@ -8,13 +8,13 @@ import { Label } from "@/components/ui/label";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { insertUserSchema } from "@shared/schema";
+import { insertUserSchema } from "@/shared/scheme";
 import { Loader2 } from "lucide-react";
 
 export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
-  
+
   const form = useForm({
     resolver: zodResolver(insertUserSchema),
     defaultValues: {
