@@ -1,43 +1,33 @@
+import React from 'react';
 import { GameCard } from "./game-card";
-import type { Game } from "@shared/schema";
+
+interface Game {
+  id: number;
+  title: string;
+  thumbnailUrl: string;
+  embedUrl: string;
+  description: string;
+  category: string;
+}
 
 interface GameGridProps {
   games: Game[];
-  isLoading?: boolean;
-  onFullscreen?: (gameId: number) => void;
+  isLoading: boolean;
+  onFullscreen: (gameId: number) => void;
 }
 
-export function GameGrid({ games, isLoading, onFullscreen }: GameGridProps) {
-  if (isLoading) {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="h-80 bg-card animate-pulse rounded-lg"
-          />
-        ))}
-      </div>
-    );
-  }
-
-  if (!games.length) {
-    return (
-      <div className="text-center py-12">
-        <h3 className="text-xl font-semibold text-muted-foreground">No games found</h3>
-      </div>
-    );
-  }
-
+export const GameGrid: React.FC<GameGridProps> = ({ games, isLoading, onFullscreen }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {games.map((game) => (
-        <GameCard 
-          key={game.id} 
-          game={game} 
-          onFullscreen={onFullscreen ? () => onFullscreen(game.id) : undefined}
-        />
-      ))}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {isLoading ? (
+        <p>Loading games...</p>
+      ) : games.length > 0 ? (
+        games.map(game => (
+          <GameCard key={game.id} game={game} onFullscreen={onFullscreen} />
+        ))
+      ) : (
+        <p>No games found.</p>
+      )}
     </div>
   );
-}
+};
